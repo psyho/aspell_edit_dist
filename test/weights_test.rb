@@ -15,7 +15,7 @@ class WeightsTest < Test::Unit::TestCase
   def test_weights_getters
     weights = AspellEditDistanceWeights.new
     WEIGHT_METHODS.each do |method_name|
-      assert_respond_to weights, :method_name
+      assert_respond_to weights, method_name
       assert weights.send(method_name), "weights.#{method_name} should return something"
     end
   end

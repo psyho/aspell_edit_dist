@@ -1,26 +1,37 @@
 #include "aspell_edit_dist.h"
-//#include "weights.hpp"
+#include "weights.hpp"
 //#include "leditdist.hpp"
 
 #include <iostream>
 
 // Forward declarations
-//void Init_edit_distance_weights();
+void Init_edit_distance_weights();
 //void Init_limit_edit_distance();
 
 extern "C" {
-  void Init_aspell_edit_dist() {
-    //Init_edit_distance_weights();
-    //Init_limit_edit_distance();
+  void Init_aspell_edit_dist() {    
     std::cout << "loading..." << std::endl;
+
+    Init_edit_distance_weights();
+    //Init_limit_edit_distance();
   }
 }
 
-/*
-static struct EditDistanceWeights* get_weights(VALUE weights) {
-    struct EditDistanceWeights* result;
+static EditDistanceWeights* get_weights(VALUE weights) {
+    EditDistanceWeights* result;
     Data_Get_Struct(weights, EditDistanceWeights, result);
     return result;
+}
+
+static void weights_free(EditDistanceWeights* obj) {
+  if (obj) {
+    delete obj;
+  }
+}
+
+static VALUE weights_init(VALUE self) {
+  EditDistanceWeights * new_obj = new EditDistanceWeights();
+  return Data_Wrap_Struct(cEditDistanceWeights, 0, weights_free, new_obj);
 }
 
 static VALUE weights_del1(VALUE self) {
@@ -55,6 +66,10 @@ typedef VALUE (*rb_method)(...);
 
 void Init_edit_distance_weights() {
   cEditDistanceWeights = rb_define_class("AspellEditDistanceWeights", rb_cObject);
+
+  rb_define_method(cEditDistanceWeights, "initialize", (rb_method)weights_init, 0);
+  rb_define_singleton_method(cEditDistanceWeights, "new", (rb_method)weights_init, 0);
+
   rb_define_method(cEditDistanceWeights, "del1",    (rb_method)weights_del1,     0);
   rb_define_method(cEditDistanceWeights, "del2",    (rb_method)weights_del2,     0);
   rb_define_method(cEditDistanceWeights, "swap",    (rb_method)weights_swap,     0);
@@ -66,4 +81,3 @@ void Init_edit_distance_weights() {
 
 void Init_limit_edit_distance() {
 }
-*/
