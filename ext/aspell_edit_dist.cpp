@@ -1,19 +1,15 @@
 #include "aspell_edit_dist.h"
 #include "weights.hpp"
-//#include "leditdist.hpp"
-
-#include <iostream>
+#include "leditdist.hpp"
 
 // Forward declarations
 void Init_edit_distance_weights();
-//void Init_limit_edit_distance();
+void Init_limit_edit_distance();
 
 extern "C" {
   void Init_aspell_edit_dist() {    
-    std::cout << "loading..." << std::endl;
-
     Init_edit_distance_weights();
-    //Init_limit_edit_distance();
+    Init_limit_edit_distance();
   }
 }
 
@@ -123,5 +119,11 @@ void Init_edit_distance_weights() {
   rb_define_method(cEditDistanceWeights, "max=",    (rb_method)weights_set_max,  1);
 }
 
+static VALUE aspell_limit_edit_distance(VALUE self, VALUE strA, VALUE strB, VALUE limit, VALUE weights) {
+  int result = aspeller::limit_edit_distance(STR2CSTR(strA), STR2CSTR(strB), NUM2INT(limit), *get_weights(weights));
+  return INT2FIX(result);
+}
+
 void Init_limit_edit_distance() {
+  rb_define_singleton_method(mAspell, "limit_edit_distance", (rb_method)aspell_limit_edit_distance, 4);
 }
