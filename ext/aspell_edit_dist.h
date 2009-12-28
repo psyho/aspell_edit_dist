@@ -3,6 +3,7 @@
 
 #include <ruby.h>
 
+VALUE mAspell;
 VALUE cEditDistanceWeights;
 
 #endif

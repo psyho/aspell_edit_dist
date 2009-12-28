@@ -65,7 +65,9 @@ static VALUE weights_max(VALUE self) {
 typedef VALUE (*rb_method)(...);
 
 void Init_edit_distance_weights() {
-  cEditDistanceWeights = rb_define_class("AspellEditDistanceWeights", rb_cObject);
+  mAspell = rb_define_module("Aspell");
+
+  cEditDistanceWeights = rb_define_class_under(mAspell, "EditDistanceWeights", rb_cObject);
 
   rb_define_method(cEditDistanceWeights, "initialize", (rb_method)weights_init, 0);
   rb_define_singleton_method(cEditDistanceWeights, "new", (rb_method)weights_init, 0);
