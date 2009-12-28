@@ -6,27 +6,25 @@
 void Init_edit_distance_weights();
 void Init_limit_edit_distance();
 
-extern "C" {
-  void Init_aspell_edit_dist() {    
-    Init_edit_distance_weights();
-    Init_limit_edit_distance();
-  }
+extern "C" void Init_aspell_edit_dist() {
+  Init_edit_distance_weights();
+  Init_limit_edit_distance();
 }
 
-static EditDistanceWeights* get_weights(VALUE weights) {
-    EditDistanceWeights* result;
-    Data_Get_Struct(weights, EditDistanceWeights, result);
+static aspeller::EditDistanceWeights* get_weights(VALUE weights) {
+    aspeller::EditDistanceWeights* result;
+    Data_Get_Struct(weights, aspeller::EditDistanceWeights, result);
     return result;
 }
 
-static void weights_free(EditDistanceWeights* obj) {
+static void weights_free(aspeller::EditDistanceWeights* obj) {
   if (obj) {
     delete obj;
   }
 }
 
 static VALUE weights_init(VALUE self) {
-  EditDistanceWeights * new_obj = new EditDistanceWeights();
+  aspeller::EditDistanceWeights * new_obj = new aspeller::EditDistanceWeights();
   return Data_Wrap_Struct(cEditDistanceWeights, 0, weights_free, new_obj);
 }
 
