@@ -20,6 +20,7 @@ Gem::Specification.new do |s|
      "README",
      "Rakefile",
      "VERSION",
+     "aspell_edit_dist.gemspec",
      "ext/aspell_edit_dist.cpp",
      "ext/aspell_edit_dist.h",
      "ext/extconf.rb",
