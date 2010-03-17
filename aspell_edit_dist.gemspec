@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{aspell_edit_dist}
-  s.version = "0.1.0"
+  s.version = "0.1.1"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Adam Pohorecki"]
-  s.date = %q{2009-12-29}
+  s.date = %q{2010-03-17}
   s.email = %q{adam@pohorecki.pl}
   s.extensions = ["ext/extconf.rb"]
   s.extra_rdoc_files = [
@@ -35,7 +35,7 @@ Gem::Specification.new do |s|
   s.homepage = %q{http://github.com/psyho/aspell_edit_dist}
   s.rdoc_options = ["--charset=UTF-8"]
   s.require_paths = ["lib"]
-  s.rubygems_version = %q{1.3.5}
+  s.rubygems_version = %q{1.3.6}
   s.summary = %q{Gem that exposes limit_edit_distance function from Aspell.}
   s.test_files = [
     "test/edit_distance_test.rb",
