@@ -2,6 +2,14 @@
 #ifndef __aspeller_weights_hh__
 #define __aspeller_weights_hh__
 
+#ifdef min
+#undef min
+#endif
+
+#ifdef max
+#undef max
+#endif
+
 namespace aspeller {
 
   struct EditDistanceWeights {
