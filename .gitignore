@@ -4,3 +4,4 @@ Makefile
 *.o
 *.so
 mkmf.log
+.rvmrc
