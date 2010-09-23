@@ -118,7 +118,7 @@ void Init_edit_distance_weights() {
 }
 
 static VALUE aspell_limit_edit_distance(VALUE self, VALUE strA, VALUE strB, VALUE limit, VALUE weights) {
-  int result = aspeller::limit_edit_distance(STR2CSTR(strA), STR2CSTR(strB), NUM2INT(limit), *get_weights(weights));
+  int result = aspeller::limit_edit_distance(StringValuePtr(strA), StringValuePtr(strB), NUM2INT(limit), *get_weights(weights));
   return INT2FIX(result);
 }
 
